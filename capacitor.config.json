@@ -1,5 +1,12 @@
 {
   "appId": "com.snip.taste.menu",
   "appName": "Snip Taste Menu",
-  "webDir": "dist"
+  "webDir": "dist",
+  "server": {
+    "androidScheme": "https",
+    "allowNavigation": ["*"]
+  },
+  "android": {
+    "allowMixedContent": true
+  }
 }
