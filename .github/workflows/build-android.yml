@@ -30,12 +30,6 @@ jobs:
           distribution: 'zulu'
           java-version: '17'
 
-      - name: Generate App Icons
-        run: npx @capacitor/assets generate --android
-
-      - name: Add Android Platform
-        run: npx cap add android
-
       - name: Sync Capacitor
         run: npx cap sync android
 
