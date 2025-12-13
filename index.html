@@ -1,14 +1,29 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/png" href="/logo.png" />
+    <link rel="icon" type="image/gif" href="/logo fire.gif" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Snip Taste Menu</title>
+
+    <!-- Google Analytics 4 -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag('js', new Date());
+      gtag('config', 'G-XXXXXXXXXX');
+    </script>
+
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;700&family=Permanent+Marker&family=Roboto+Condensed:wght@400;700&family=Shadows+Into+Light&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;700&family=Permanent+Marker&family=Roboto+Condensed:wght@400;700&family=Shadows+Into+Light&family=Marhey:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
     <script>
       tailwind.config = {
         theme: {
@@ -20,21 +35,38 @@
               'snip-bg': '#F4F1EA',
             },
             fontFamily: {
-              'display': ['"Oswald"', 'sans-serif'],
-              'hand': ['"Permanent Marker"', 'cursive'],
-              'body': ['"Roboto Condensed"', 'sans-serif'],
-              'script': ['"Shadows Into Light"', 'cursive'],
+              display: ['"Oswald"', 'sans-serif'],
+              hand: ['"Permanent Marker"', 'cursive'],
+              body: ['"Roboto Condensed"', 'sans-serif'],
+              script: ['"Shadows Into Light"', 'cursive'],
+              arabic: ['"Marhey"', 'sans-serif'],
             },
             backgroundImage: {
-              'wood-pattern': "url('https://www.transparenttextures.com/patterns/white-wall-3.png')",
-            }
-          }
-        }
-      }
+              'wood-pattern':
+                "url('https://www.transparenttextures.com/patterns/white-wall-3.png')",
+            },
+            animation: {
+              'bounce-smooth': 'bounce-smooth 2s ease-in-out infinite',
+            },
+            keyframes: {
+              'bounce-smooth': {
+                '0%, 100%': {
+                  transform: 'translateY(0)',
+                  animationTimingFunction: 'cubic-bezier(0.8, 0, 1, 1)',
+                },
+                '50%': {
+                  transform: 'translateY(-25px)',
+                  animationTimingFunction: 'cubic-bezier(0, 0, 0.2, 1)',
+                },
+              },
+            },
+          },
+        },
+      };
     </script>
     <style>
       body {
-        background-color: #F4F1EA;
+        background-color: #f4f1ea;
         background-image: url('https://www.transparenttextures.com/patterns/wood-pattern.png');
       }
       .brush-stroke {
@@ -44,28 +76,76 @@
         transform: translate(-50%, -50%) skew(-10deg) rotate(-2deg);
         width: 110%;
         height: 80%;
-        background-color: #FFD700;
+        background-color: #ffd700;
         z-index: -1;
         border-radius: 4px;
         opacity: 0.9;
-        box-shadow: 2px 2px 0px rgba(0,0,0,0.1);
+        box-shadow: 2px 2px 0px rgba(0, 0, 0, 0.1);
       }
       .menu-shadow {
-        text-shadow: 2px 2px 0px rgba(0,0,0,0.1);
+        text-shadow: 2px 2px 0px rgba(0, 0, 0, 0.1);
+      }
+
+      /* Professional Centered Logo */
+      .logo-bounce-wrapper {
+        position: relative;
+        width: 100%;
+        max-width: 300px;
+        height: auto;
+        margin: 0 auto;
+        padding: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      /* Static Centered Logo */
+      .logo-bounce-wrapper::before {
+        content: '';
+        position: relative;
+        display: block;
+        width: 250px;
+        height: 250px;
+        background: url('/logo fire.gif') center/contain no-repeat;
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+        filter: drop-shadow(0 5px 15px rgba(255, 215, 0, 0.3));
+      }
+
+      /* Mobile Responsive */
+      @media (max-width: 768px) {
+        .logo-bounce-wrapper {
+          max-width: 220px;
+        }
+
+        .logo-bounce-wrapper::before {
+          width: 200px;
+          height: 200px;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .logo-bounce-wrapper {
+          max-width: 180px;
+        }
+
+        .logo-bounce-wrapper::before {
+          width: 160px;
+          height: 160px;
+        }
       }
     </style>
-  <script type="importmap">
-{
-  "imports": {
-    "react": "https://aistudiocdn.com/react@^19.2.1",
-    "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.1/",
-    "react/": "https://aistudiocdn.com/react@^19.2.1/",
-    "jspdf": "https://esm.sh/jspdf@2.5.1"
-  }
-}
-</script>
-<link rel="stylesheet" href="/index.css">
-</head>
+    <script type="importmap">
+      {
+        "imports": {
+          "react": "https://aistudiocdn.com/react@^19.2.1",
+          "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.1/",
+          "react/": "https://aistudiocdn.com/react@^19.2.1/",
+          "jspdf": "https://esm.sh/jspdf@2.5.1"
+        }
+      }
+    </script>
+    <link rel="stylesheet" href="/index.css" />
+  </head>
   <body>
     <div id="root"></div>
     <script type="module" src="/index.tsx"></script>

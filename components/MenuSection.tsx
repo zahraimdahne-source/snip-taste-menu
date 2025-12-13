@@ -25,19 +25,21 @@ const MenuSection: React.FC<MenuSectionProps> = ({ section, className = '', onIt
 
         <ul className="space-y-3">
           {section.items.map((item, index) => (
-            <li 
-              key={index} 
+            <li
+              key={index}
               onClick={() => onItemClick(item, section)}
               className="group flex items-baseline justify-between border-b border-dashed border-gray-400 pb-1 last:border-0 cursor-pointer hover:bg-white/80 transition-colors rounded px-1 -mx-1 py-1"
             >
               <div className="flex items-center gap-2 flex-1">
                 {/* Plus icon on hover */}
-                <span className="text-snip-orange opacity-0 group-hover:opacity-100 transition-opacity font-bold text-lg">+</span>
+                <span className="text-snip-orange opacity-0 group-hover:opacity-100 transition-opacity font-bold text-lg">
+                  +
+                </span>
                 <span className="font-body font-bold text-lg md:text-xl text-snip-black uppercase pr-2 leading-none tracking-tight">
                   {item.name}
                 </span>
               </div>
-              
+
               {section.type === 'standard' && item.price && (
                 <span className="font-display font-bold text-xl md:text-2xl text-snip-orange whitespace-nowrap">
                   {item.price.toFixed(2)} <span className="text-sm text-gray-600">DH</span>
@@ -47,10 +49,12 @@ const MenuSection: React.FC<MenuSectionProps> = ({ section, className = '', onIt
               {section.type === 'dual-price' && item.prices && (
                 <div className="flex gap-1 shrink-0">
                   <span className="w-16 text-center font-display font-bold text-xl md:text-2xl text-snip-orange">
-                    {item.prices.small.toFixed(2)} <span className="text-xs text-gray-600 hidden md:inline">DH</span>
+                    {item.prices.small.toFixed(2)}{' '}
+                    <span className="text-xs text-gray-600 hidden md:inline">DH</span>
                   </span>
                   <span className="w-16 text-center font-display font-bold text-xl md:text-2xl text-snip-orange">
-                    {item.prices.large.toFixed(2)} <span className="text-xs text-gray-600 hidden md:inline">DH</span>
+                    {item.prices.large.toFixed(2)}{' '}
+                    <span className="text-xs text-gray-600 hidden md:inline">DH</span>
                   </span>
                 </div>
               )}
