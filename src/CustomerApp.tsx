@@ -120,8 +120,10 @@ function CustomerApp() {
         style={{
           position: 'fixed',
           top: 0,
-          left: 0,
+          left: '50%',
+          transform: 'translateX(-50%)',
           width: '100%',
+          maxWidth: '800px', // Constrain width reasonably
           zIndex: 60,
           pointerEvents: 'none',
         }}
@@ -135,7 +137,7 @@ function CustomerApp() {
           {/* Container */}
           <div className="max-w-7xl mx-auto px-4 py-8 md:py-12 relative">
             {/* Header / Hero */}
-            <header className="flex flex-col md:flex-row items-center justify-between mb-12 md:mb-20 relative">
+            <header className="flex flex-col items-center justify-center mb-12 md:mb-20 relative text-center">
               <div className="absolute top-10 left-10 md:left-1/4 opacity-10 -rotate-12 pointer-events-none">
                 <svg
                   width="200"
@@ -153,11 +155,7 @@ function CustomerApp() {
                 </svg>
               </div>
 
-              <div className="z-10 order-2 md:order-1 mt-6 md:mt-0">
-                {/* Left side spacer or small decorative text could go here */}
-              </div>
-
-              <div className="z-20 order-1 md:order-2 flex flex-col items-center">
+              <div className="z-20 flex flex-col items-center">
                 <div onClick={handleLogoClick}>
                   {/* Replaced standard Logo with Liquid Effect Logo */}
                   <LiquidLogo />
@@ -176,8 +174,6 @@ function CustomerApp() {
                   <span>Cliquez sur un article pour commander</span>
                 </p>
               </div>
-
-              <div className="z-10 order-3 hidden md:block w-32">{/* Right side spacer */}</div>
             </header>
 
             {/* Main Menu Grid Layout */}
