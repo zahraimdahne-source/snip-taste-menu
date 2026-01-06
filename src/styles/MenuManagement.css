@@ -1,0 +1,58 @@
+/* MenuManagement.css - Styling for Admin Menu Redesign */
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@400;700&family=Roboto:wght@400;700&display=swap');
+
+/* Font Variables - Mimicking Tailwind config if not available */
+:root {
+  --font-display: 'Oswald', sans-serif;
+  --font-body: 'Roboto', sans-serif;
+  --snip-orange: #f97316; /* Tailwind orange-500 approx */
+  --snip-black: #1f2937;
+  --snip-yellow: #facc15;
+}
+
+/* Background Pattern */
+.bg-wood-pattern {
+  background-color: #fdfbf7;
+  background-image: radial-gradient(#d4c5b0 1px, transparent 1px);
+  background-size: 20px 20px;
+}
+
+/* Form Styles Override for AdminModal */
+.modal-overlay {
+  animation: fadeIn 0.3s ease-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.bg-gradient-custom {
+  background: linear-gradient(135deg, var(--snip-orange), #ea580c);
+}
+
+/* Masonry Fallback */
+.menu-masonry-grid {
+  /* Note: Tailwind columns-1 md:columns-2 handles this, CSS here for backup */
+}
+
+/* Custom Scrollbar for Modal content if needed */
+.modal-content {
+  max-height: 90vh;
+  overflow-y: auto;
+}

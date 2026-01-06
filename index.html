@@ -2,9 +2,32 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/gif" href="/logo fire.gif" />
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
+    <link rel="icon" type="image/png" href="/logo.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Snip Taste Menu</title>
+    <title>Snip Taste - Menu & Livraison</title>
+    <meta
+      name="description"
+      content="Découvrez le menu de Snip Taste : Tacos, Burgers, Pizzas, Pâtes et plus. Livraison rapide à Casablanca. Commandez maintenant !"
+    />
+    <meta
+      name="keywords"
+      content="Snip Taste, fast food Casablanca, tacos, burger, pizza, livraison repas, restaurant Casablanca"
+    />
+    <meta name="author" content="Snip Taste" />
+    <meta name="theme-color" content="#FF6B35" />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://sniptaste.com/" />
+    <meta property="og:title" content="Snip Taste - Menu & Livraison" />
+    <meta
+      property="og:description"
+      content="Les meilleurs Tacos, Burgers et Pizzas de Casablanca. Commandez en ligne !"
+    />
+    <meta property="og:image" content="/snip logo.png" />
 
     <!-- Google Analytics 4 -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
@@ -68,6 +91,9 @@
       body {
         background-color: #f4f1ea;
         background-image: url('https://www.transparenttextures.com/patterns/wood-pattern.png');
+        scroll-behavior: smooth;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
       }
       .brush-stroke {
         position: absolute;
@@ -84,54 +110,6 @@
       }
       .menu-shadow {
         text-shadow: 2px 2px 0px rgba(0, 0, 0, 0.1);
-      }
-
-      /* Professional Centered Logo */
-      .logo-bounce-wrapper {
-        position: relative;
-        width: 100%;
-        max-width: 300px;
-        height: auto;
-        margin: 0 auto;
-        padding: 20px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-      }
-
-      /* Static Centered Logo */
-      .logo-bounce-wrapper::before {
-        content: '';
-        position: relative;
-        display: block;
-        width: 250px;
-        height: 250px;
-        background: url('/logo fire.gif') center/contain no-repeat;
-        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
-        filter: drop-shadow(0 5px 15px rgba(255, 215, 0, 0.3));
-      }
-
-      /* Mobile Responsive */
-      @media (max-width: 768px) {
-        .logo-bounce-wrapper {
-          max-width: 220px;
-        }
-
-        .logo-bounce-wrapper::before {
-          width: 200px;
-          height: 200px;
-        }
-      }
-
-      @media (max-width: 480px) {
-        .logo-bounce-wrapper {
-          max-width: 180px;
-        }
-
-        .logo-bounce-wrapper::before {
-          width: 160px;
-          height: 160px;
-        }
       }
     </style>
     <script type="importmap">

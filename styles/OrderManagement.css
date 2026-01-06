@@ -1,0 +1,155 @@
+.order-management-container {
+  max-width: 1200px;
+}
+
+.order-management-container h2 {
+  font-size: 28px;
+  color: #333;
+  margin: 0 0 30px 0;
+  font-weight: 700;
+}
+
+.order-filters {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 30px;
+}
+
+.order-filters button {
+  padding: 10px 20px;
+  border: 2px solid #e0e0e0;
+  background: white;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.order-filters button:hover {
+  border-color: #667eea;
+  color: #667eea;
+}
+
+.order-filters button.active {
+  background: #667eea;
+  color: white;
+  border-color: #667eea;
+}
+
+.orders-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.order-card {
+  background: white;
+  border-radius: 12px;
+  padding: 24px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+.order-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 20px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.order-header h3 {
+  margin: 0 0 5px 0;
+  font-size: 18px;
+  color: #333;
+}
+
+.order-date {
+  margin: 0;
+  font-size: 13px;
+  color: #999;
+}
+
+.order-total {
+  font-size: 24px;
+  font-weight: 700;
+  color: #667eea;
+}
+
+.order-items,
+.order-customer {
+  margin-bottom: 20px;
+}
+
+.order-items h4,
+.order-customer h4 {
+  margin: 0 0 10px 0;
+  font-size: 14px;
+  color: #666;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.order-items ul {
+  margin: 0;
+  padding-left: 20px;
+}
+
+.order-items li {
+  margin-bottom: 5px;
+  color: #333;
+}
+
+.order-customer p {
+  margin: 5px 0;
+  color: #333;
+}
+
+.order-actions {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.status-select {
+  padding: 8px 16px;
+  border: 2px solid;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.status-select.status-pending {
+  border-color: #feca57;
+  background-color: #fff3cd;
+  color: #856404;
+}
+
+.status-select.status-completed {
+  border-color: #48dbfb;
+  background-color: #d4edda;
+  color: #155724;
+}
+
+.status-select.status-cancelled {
+  border-color: #ee5a6f;
+  background-color: #f8d7da;
+  color: #721c24;
+}
+
+@media (max-width: 768px) {
+  .order-filters {
+    flex-wrap: wrap;
+  }
+
+  .order-header {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .order-total {
+    font-size: 20px;
+  }
+}

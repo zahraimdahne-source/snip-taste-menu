@@ -1,0 +1,107 @@
+.liquid-container {
+  position: relative;
+  display: inline-block;
+}
+
+.liquid-button {
+  position: relative;
+  padding: 15px 40px;
+  font-size: 1.2rem;
+  font-weight: 900;
+  color: #fff;
+  background: #ffd700; /* Gold */
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
+  z-index: 10;
+  font-family: 'Bungee', sans-serif; /* Using App Font */
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  outline: none;
+
+  /* Box Shadow/Glow */
+  box-shadow: 0 10px 25px rgba(255, 215, 0, 0.4);
+  transition:
+    transform 0.2s ease,
+    background 0.3s;
+}
+
+/* Darker Gold/Orange on Hover */
+.liquid-button:hover {
+  background: #ff8c00;
+  transform: translateY(-2px);
+}
+
+.liquid-button:active {
+  transform: translateY(2px);
+}
+
+/* The Droplet */
+.drop {
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  transform: translateX(-50%);
+  width: 20px;
+  height: 20px;
+  background: #ffd700; /* Matches button */
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: -1; /* Behind button but caught by filter if parent had filter */
+
+  /* Animation */
+  animation: drop-anim 4s infinite cubic-bezier(0.5, 0, 0.5, 1);
+}
+
+.liquid-button:hover .drop {
+  background: #ff8c00;
+}
+
+/*
+   To achieve the "Gooey" effect (Liquid connection),
+   we typically apply the filter to a wrapper containing both button and drop.
+   However, filtering the whole button makes text blurry.
+
+   Technique:
+   1. Wrap the background (shape) and the drop in a 'goo-wrapper' with the filter.
+   2. Place the text on top, outside the filter.
+
+   For simplicity in this component structure, we apply broadly but we try to sharpen text via stacking.
+
+   Actually, let's use the standard "Dropping" keyframes requested.
+*/
+
+@keyframes drop-anim {
+  0% {
+    bottom: 50%;
+    opacity: 1; /* Hidden behind button */
+    transform: translateX(-50%) scale(0.8);
+  }
+  30% {
+    /* Starts emerging */
+    bottom: -10px;
+    transform: translateX(-50%) scale(1);
+  }
+  60% {
+    /* Drops down */
+    bottom: -40px;
+    transform: translateX(-50%) scale(0.5); /* Thins out */
+  }
+  80% {
+    bottom: -60px;
+    opacity: 0;
+  }
+  100% {
+    bottom: -60px;
+    opacity: 0;
+  }
+}
+
+/* Apply filter to the container to merge button bg and drop */
+.liquid-container {
+  filter: url('#goo');
+  /* Note: Text inside might get blurry edges.
+       Fix: Ensure text is in a higher z-index element if possible,
+       or accept slight rounding of text (which fits the style).
+    */
+}

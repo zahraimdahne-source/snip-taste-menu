@@ -1,0 +1,13 @@
+/* Typing Title Text Shadow Effect */
+.typing-title-glow {
+  text-shadow:
+    -2px -2px 0 #ffd700,
+    2px -2px 0 #ffd700,
+    -2px 2px 0 #ffd700,
+    2px 2px 0 #ffd700,
+    -3px 0 0 #ffd700,
+    3px 0 0 #ffd700,
+    0 -3px 0 #ffd700,
+    0 3px 0 #ffd700,
+    0 0 10px rgba(255, 215, 0, 0.5);
+}

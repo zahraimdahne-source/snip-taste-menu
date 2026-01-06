@@ -1,0 +1,454 @@
+/* Snake Game Styles - Classic Retro Theme */
+
+.snake-game-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.95);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  animation: fadeIn 0.3s ease;
+}
+
+.snake-game-container {
+  background: linear-gradient(135deg, #1a1a1a 0%, #0d0d0d 100%);
+  border-radius: 20px;
+  padding: 2rem;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8);
+  max-width: 95vw;
+  max-height: 95vh;
+  overflow-y: auto;
+  border: 3px solid #333;
+}
+
+/* Header */
+.snake-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+.snake-title {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.snake-title h2 {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #c0c0c0;
+  text-shadow: 2px 2px 0px #000;
+  margin: 0;
+  font-family: 'Courier New', monospace;
+}
+
+.snake-emoji {
+  font-size: 2rem;
+  animation: bounce 1s ease-in-out infinite;
+}
+
+.snake-close-btn {
+  background: #333;
+  border: 2px solid #666;
+  color: #c0c0c0;
+  width: 40px;
+  height: 40px;
+  border-radius: 8px;
+  font-size: 1.5rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+}
+
+.snake-close-btn:hover {
+  background: #555;
+  border-color: #888;
+  transform: scale(1.1);
+}
+
+/* Score */
+.snake-score {
+  display: flex;
+  justify-content: space-around;
+  gap: 2rem;
+  margin-bottom: 1.5rem;
+  background: #0a0a0a;
+  padding: 1rem;
+  border-radius: 10px;
+  border: 2px solid #333;
+}
+
+.score-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.score-label {
+  color: #888;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-family: 'Courier New', monospace;
+}
+
+.score-value {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #c0c0c0;
+  text-shadow: 2px 2px 0px #000;
+  font-family: 'Courier New', monospace;
+}
+
+.score-value.high {
+  color: #fff;
+  text-shadow: 2px 2px 0px #000;
+}
+
+/* Game Board */
+.snake-board {
+  position: relative;
+  background: #9aa79d;
+  background-image: url('/loggo.png');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 80%;
+  border: 4px solid #000;
+  border-radius: 10px;
+  margin: 0 auto 1.5rem;
+  width: 300px;
+  height: 300px;
+  box-shadow:
+    0 0 0 2px #333,
+    inset 0 0 20px rgba(0, 0, 0, 0.3);
+}
+
+.snake-board::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(154, 167, 157, 0.85);
+  border-radius: 6px;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.snake-board > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* Snake Head with Logo */
+.snake-head {
+  position: absolute;
+  width: 18px;
+  height: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.05s linear;
+  transform-origin: center;
+}
+
+.snake-head img {
+  width: 18px;
+  height: 18px;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+/* Snake Body */
+.snake-segment {
+  position: absolute;
+  width: 15px;
+  height: 15px;
+  background: #000;
+  border-radius: 50%;
+  box-shadow: inset 0 0 3px rgba(255, 255, 255, 0.3);
+  transition: all 0.05s linear;
+}
+
+/* Food */
+.snake-food {
+  position: absolute;
+  width: 15px;
+  height: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  animation: foodPulse 0.5s ease-in-out infinite;
+  filter: grayscale(100%);
+}
+
+@keyframes foodPulse {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.2);
+  }
+}
+
+/* Game Over Overlay */
+.game-over-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.95);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  animation: fadeIn 0.3s ease;
+}
+
+.game-over-content {
+  text-align: center;
+  color: #c0c0c0;
+}
+
+.game-over-content h3 {
+  font-size: 2.5rem;
+  color: #c0c0c0;
+  margin-bottom: 1rem;
+  text-shadow: 3px 3px 0px #000;
+  font-family: 'Courier New', monospace;
+}
+
+.final-score {
+  font-size: 1.5rem;
+  color: #c0c0c0;
+  margin-bottom: 1rem;
+  font-family: 'Courier New', monospace;
+}
+
+.new-record {
+  font-size: 1.2rem;
+  color: #fff;
+  margin-bottom: 1rem;
+  animation: pulse 1s ease-in-out infinite;
+  font-family: 'Courier New', monospace;
+  text-shadow: 2px 2px 0px #000;
+}
+
+.restart-btn {
+  background: #333;
+  color: #c0c0c0;
+  border: 3px solid #666;
+  padding: 1rem 2rem;
+  font-size: 1.2rem;
+  font-weight: 700;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 5px 0 #000;
+  font-family: 'Courier New', monospace;
+}
+
+.restart-btn:hover {
+  background: #555;
+  border-color: #888;
+  transform: translateY(-2px);
+  box-shadow: 0 7px 0 #000;
+}
+
+.restart-btn:active {
+  transform: translateY(2px);
+  box-shadow: 0 3px 0 #000;
+}
+
+/* Pause Overlay */
+.pause-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.9);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  color: #c0c0c0;
+}
+
+.pause-overlay h3 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  font-family: 'Courier New', monospace;
+  text-shadow: 2px 2px 0px #000;
+}
+
+.pause-overlay p {
+  font-family: 'Courier New', monospace;
+}
+
+/* Controls Info */
+.snake-controls {
+  display: flex;
+  justify-content: space-around;
+  gap: 2rem;
+  margin-bottom: 1rem;
+  padding: 1rem;
+  background: #0a0a0a;
+  border-radius: 10px;
+  border: 2px solid #333;
+}
+
+.controls-section {
+  text-align: center;
+}
+
+.controls-section h4 {
+  color: #c0c0c0;
+  margin-bottom: 0.5rem;
+  font-size: 1rem;
+  font-family: 'Courier New', monospace;
+}
+
+.controls-section p {
+  color: #888;
+  font-size: 0.9rem;
+  margin: 0.25rem 0;
+  font-family: 'Courier New', monospace;
+}
+
+/* Mobile Controls */
+.mobile-controls {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+.control-row {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.control-btn {
+  width: 60px;
+  height: 60px;
+  background: #333;
+  border: 3px solid #666;
+  border-radius: 8px;
+  color: #c0c0c0;
+  font-size: 1.5rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 0 #000;
+  -webkit-user-select: none;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.control-btn:active {
+  transform: translateY(2px);
+  box-shadow: 0 2px 0 #000;
+}
+
+.control-btn.pause-btn {
+  background: #555;
+  border-color: #888;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes bounce {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.8;
+    transform: scale(1.05);
+  }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .snake-game-container {
+    padding: 1rem;
+  }
+
+  .snake-title h2 {
+    font-size: 1.5rem;
+  }
+
+  .snake-emoji {
+    font-size: 1.5rem;
+  }
+
+  .score-value {
+    font-size: 1.5rem;
+  }
+
+  .snake-controls {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .controls-section h4 {
+    font-size: 0.9rem;
+  }
+
+  .controls-section p {
+    font-size: 0.8rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .snake-game-container {
+    padding: 0.5rem;
+  }
+
+  .snake-title h2 {
+    font-size: 1.2rem;
+  }
+
+  .score-value {
+    font-size: 1.2rem;
+  }
+
+  .control-btn {
+    width: 50px;
+    height: 50px;
+    font-size: 1.2rem;
+  }
+}
+
+/* Hide mobile controls on desktop */
+@media (min-width: 769px) {
+  .mobile-controls {
+    display: none;
+  }
+}

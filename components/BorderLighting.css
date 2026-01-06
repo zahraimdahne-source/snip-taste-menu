@@ -1,0 +1,218 @@
+.rotating-border-container {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  pointer-events: none;
+  overflow: hidden;
+  padding: 3px; /* Controls border width */
+}
+
+/* The element that spins */
+.rotating-border-bg {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 200vmax; /* Ensure it covers screen */
+  height: 200vmax;
+  transform: translate(-50%, -50%);
+  background: conic-gradient(
+    transparent 280deg,
+    #ffd700 320deg,
+    /* Gold Trail */ #fffdd0 340deg,
+    /* Light Gold Highlight */ #ffd700 360deg /* Gold End */
+  );
+  animation: spin-border 4s linear infinite;
+}
+
+/* Mask to hide the center of the gradient so only the edge (padding) shows */
+.rotating-border-mask {
+  position: absolute;
+  inset: 3px; /* Match padding */
+  background: transparent;
+  z-index: 2;
+  /* Create a 'cutout' effect using box-shadow to cover the gradient outside the viewport?
+       No, we want to SEE the gradient in the padding area.
+       Actually, standard usage: Parent has padding.
+       Child 'mask' covers the content area with opaque color?
+       No, we need the content area transparent for the App.
+
+       Solution: clip-path or mask-composite.
+       Easiest robust solution for "App Border":
+       Use SVG or 4 separate divs for Top/Right/Bottom/Left borders? No, gradient needs to flow.
+
+       Use mask-image on the CONTAINER.
+    */
+  display: none; /* Not used in this technique */
+}
+
+/* Correct Technique:
+   Container has the gradient content.
+   We apply a mask to the CONTAINER so only the 3px edge is visible.
+*/
+.gold-border-wrapper {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  pointer-events: none;
+
+  /* Show gradient only on the border area */
+  -webkit-mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  padding: 4px; /* Border thickness */
+}
+
+.gold-glow-spinner {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 250vmax;
+  height: 250vmax;
+  transform: translate(-50%, -50%);
+  background: conic-gradient(
+    transparent 0deg,
+    transparent 250deg,
+    #dba514 300deg,
+    /* Darker Gold */ #ffd700 320deg,
+    /* Pure Gold */ #ffffff 340deg,
+    /* White Highlight for 'Lighting' feel */ #ffd700 350deg,
+    transparent 360deg
+  );
+  animation: spin-border 3s linear infinite;
+}
+
+@keyframes spin-border {
+  from {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+  to {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+}
+
+/* Traveling Logo Container - rotates with the light */
+.traveling-logo-container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  /*
+      We want the logo to ride ON the border.
+      The border is at the edge of the viewport.
+      The viewport diagonal is dynamic, but we can approximate or use a large circle that intersects the corners?
+
+      Actually, if we want it to follow the RECTANGULAR border exactly, that's complex with pure rotation.
+      However, usually "border lighting" effects use a large rotating gradient which creates the illusion of movement along the edge.
+
+      To make an image follow the exact rectangular path is much harder with just CSS rotation.
+
+      SIMPLE VISUAL HACK:
+      If we stick the logo to the edge of a rotating large container, it will move incircle.
+      Since the view is rectangular, the circle will go OFF screen at the sides if it covers corners.
+
+      BETTER APPROACH for "following the light":
+      We can use offset-path (motion path) in CSS if supported, or just let it rotate in a large circle that stays roughly near the edge?
+
+      Let's try the circular rotation first, synced with the gradient.
+      The 'light' is at ~340deg in the gradient.
+      We place the logo at fixed radius from center.
+    */
+  width: 250vmax;
+  height: 250vmax;
+  transform: translate(-50%, -50%);
+  animation: spin-border 3s linear infinite;
+  z-index: 101; /* Above the border line */
+}
+
+.traveling-logo {
+  position: absolute;
+  /* Position matches the 'head' of the light beam in the conic gradient (approx 340deg-350deg) */
+  top: 50%;
+  left: 50%;
+  width: 40px;
+  height: 40px;
+  background: url('/snip logo.png') no-repeat center center; /* Ensure this path is correct */
+  background-size: contain;
+
+  /*
+       We need to push it out to the edge.
+       Since we don't know the exact screen aspect ratio in CSS easily for a perfect rectangular trace without SVG,
+       we will use a technique where it sits on the rotating plane but we try to clamp it?
+
+       Actually, standard 'border light' is a visual illusion.
+       If the user wants a logo MOVING ALONG THE BORDER, standard CSS offset-path is best for a rectangle.
+
+       But mixing offset-path with a rotating conic gradient is tricky to sync.
+
+       Let's stick to the "Rotating Element" for now.
+       If we place it far out, it will be visible only when passing corners if the circle is too big?
+
+       Let's try a simpler JS-based approach in the Component if we want perfect rectangular movement?
+       Or just CSS:
+       Keyframes that move Top-Left -> Top-Right -> Bottom-Right -> Bottom-Left.
+    */
+  display: none; /* See Component for JS implementation of rectangular movement */
+}
+
+/* Keyframes for rectangular movement - we'll use this if we switch to pure animation */
+/* Rectangular Motion Keyframes */
+/* We move the logo along the 4 edges.
+   0-25% : Top Left -> Top Right
+   25-50%: Top Right -> Bottom Right
+   50-75%: Bottom Right -> Bottom Left
+   75-100%: Bottom Left -> Top Left
+
+   Using percentages to traverse the viewport edge.
+*/
+@keyframes follow-border-rect {
+  0% {
+    top: 0;
+    left: 0;
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+  25% {
+    top: 0;
+    left: 100%;
+    transform: translate(-50%, -50%) rotate(90deg);
+  }
+  50% {
+    top: 100%;
+    left: 100%;
+    transform: translate(-50%, -50%) rotate(180deg);
+  }
+  75% {
+    top: 100%;
+    left: 0;
+    transform: translate(-50%, -50%) rotate(270deg);
+  }
+  100% {
+    top: 0;
+    left: 0;
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+}
+
+.logo-traveler {
+  position: absolute;
+  width: 50px; /* Small size as requested */
+  height: 50px;
+  z-index: 102;
+  background-image: url('/snip logo.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  /* Glow for the logo itself to match the lighting */
+  filter: drop-shadow(0 0 10px #ffd700);
+  animation: follow-border-rect 4s linear infinite; /* Matches gradient speed */
+  pointer-events: none;
+
+  /* Ensure it stays on edge */
+  /* Note: Ideally we want it offset by half its size so it centers on the line.
+       The keyframes use top/left 0/100% which is the very edge.
+       Transform translate(-50%, -50%) centers the logo ON the line.
+    */
+}

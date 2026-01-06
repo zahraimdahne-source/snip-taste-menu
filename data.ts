@@ -181,6 +181,7 @@ export const menuData: MenuSectionData[] = [
     id: 'plats',
     title: 'PLATS',
     type: 'standard',
+    note: 'Choix de sauce: Sauce Blanche ou Sauce Champignon',
     items: [
       { name: 'Emincé De Poulet', price: 45.0 },
       { name: 'Brochette Poulet', price: 40.0 },

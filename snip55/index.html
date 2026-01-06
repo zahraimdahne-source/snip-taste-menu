@@ -85,54 +85,6 @@
       .menu-shadow {
         text-shadow: 2px 2px 0px rgba(0, 0, 0, 0.1);
       }
-
-      /* Professional Centered Logo */
-      .logo-bounce-wrapper {
-        position: relative;
-        width: 100%;
-        max-width: 300px;
-        height: auto;
-        margin: 0 auto;
-        padding: 20px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-      }
-
-      /* Static Centered Logo */
-      .logo-bounce-wrapper::before {
-        content: '';
-        position: relative;
-        display: block;
-        width: 250px;
-        height: 250px;
-        background: url('/logo%20fire.gif') center/contain no-repeat;
-        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
-        filter: drop-shadow(0 5px 15px rgba(255, 215, 0, 0.3));
-      }
-
-      /* Mobile Responsive */
-      @media (max-width: 768px) {
-        .logo-bounce-wrapper {
-          max-width: 220px;
-        }
-
-        .logo-bounce-wrapper::before {
-          width: 200px;
-          height: 200px;
-        }
-      }
-
-      @media (max-width: 480px) {
-        .logo-bounce-wrapper {
-          max-width: 180px;
-        }
-
-        .logo-bounce-wrapper::before {
-          width: 160px;
-          height: 160px;
-        }
-      }
     </style>
 
     <link rel="stylesheet" href="/index.css" />

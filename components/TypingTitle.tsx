@@ -43,22 +43,7 @@ const TypingTitle: React.FC = () => {
 
       {/* Dynamic Typing Text Below - Professional and Centered */}
       <div className="relative min-h-[80px] flex items-center justify-center">
-        <span
-          className="text-6xl md:text-7xl lg:text-8xl font-arabic font-bold text-black text-center block relative px-4"
-          style={{
-            textShadow: `
-              -2px -2px 0 #FFD700,
-              2px -2px 0 #FFD700,
-              -2px 2px 0 #FFD700,
-              2px 2px 0 #FFD700,
-              -3px 0 0 #FFD700,
-              3px 0 0 #FFD700,
-              0 -3px 0 #FFD700,
-              0 3px 0 #FFD700,
-              0 0 10px rgba(255, 215, 0, 0.5)
-            `,
-          }}
-        >
+        <span className="text-6xl md:text-7xl lg:text-8xl font-arabic font-bold text-black text-center block relative px-4 typing-title-glow">
           {text}
           {/* Hand-drawn style underlines */}
           {text && (

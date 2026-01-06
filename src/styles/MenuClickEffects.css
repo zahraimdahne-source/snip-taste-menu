@@ -1,0 +1,193 @@
+/* Menu Item Click Effects - Make items obviously clickable */
+
+/* Pulse animation for "Click me" hint */
+@keyframes pulse-glow {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 rgba(255, 107, 53, 0.4);
+  }
+  50% {
+    box-shadow: 0 0 0 10px rgba(255, 107, 53, 0);
+  }
+}
+
+/* Bounce animation for pointer */
+@keyframes bounce-pointer {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+/* Shimmer effect */
+@keyframes shimmer {
+  0% {
+    background-position: -1000px 0;
+  }
+  100% {
+    background-position: 1000px 0;
+  }
+}
+
+/* Menu item hover effects */
+.menu-item-card {
+  position: relative;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Add pointer cursor hint */
+.menu-item-card::before {
+  content: '👆';
+  position: absolute;
+  top: -30px;
+  right: 10px;
+  font-size: 24px;
+  opacity: 0;
+  animation: bounce-pointer 2s ease-in-out infinite;
+  pointer-events: none;
+}
+
+/* Show pointer on first 3 items */
+.menu-item-card:nth-child(1)::before,
+.menu-item-card:nth-child(2)::before,
+.menu-item-card:nth-child(3)::before {
+  opacity: 0.7;
+  animation-delay: calc(var(--item-index) * 0.5s);
+}
+
+/* Hover effect - lift and glow */
+.menu-item-card:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow:
+    0 20px 40px rgba(255, 107, 53, 0.3),
+    0 0 0 3px rgba(255, 107, 53, 0.2);
+  z-index: 10;
+}
+
+/* Active/Click effect */
+.menu-item-card:active {
+  transform: translateY(-4px) scale(0.98);
+}
+
+/* Pulse glow on load */
+.menu-item-card.pulse-hint {
+  animation: pulse-glow 2s ease-in-out 3;
+}
+
+/* Shimmer effect on hover */
+.menu-item-card:hover::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+  pointer-events: none;
+  border-radius: inherit;
+}
+
+/* Click me badge */
+.click-me-badge {
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  background: linear-gradient(135deg, #ff6b35, #f7931e);
+  color: white;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: bold;
+  box-shadow: 0 4px 12px rgba(255, 107, 53, 0.4);
+  animation: pulse-glow 2s ease-in-out infinite;
+  z-index: 5;
+}
+
+/* Tap instruction for mobile */
+@media (max-width: 768px) {
+  .menu-item-card::before {
+    content: '👉 Tap';
+    font-size: 14px;
+    background: rgba(255, 107, 53, 0.9);
+    color: white;
+    padding: 4px 8px;
+    border-radius: 12px;
+    top: 10px;
+    right: 10px;
+  }
+}
+
+/* Price badge pulse */
+.price-badge {
+  animation: pulse-glow 3s ease-in-out infinite;
+  animation-delay: 1s;
+}
+
+/* Add border glow on hover */
+.menu-item-card {
+  border: 2px solid transparent;
+  transition: all 0.3s ease;
+}
+
+.menu-item-card:hover {
+  border-color: rgba(255, 107, 53, 0.5);
+}
+
+/* Gradient border animation */
+@keyframes gradient-border {
+  0% {
+    border-image-source: linear-gradient(45deg, #ff6b35, #f7931e);
+  }
+  50% {
+    border-image-source: linear-gradient(45deg, #f7931e, #ffd700);
+  }
+  100% {
+    border-image-source: linear-gradient(45deg, #ff6b35, #f7931e);
+  }
+}
+
+/* First visit hint */
+.first-visit-hint {
+  position: fixed;
+  bottom: 100px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(0, 0, 0, 0.9);
+  color: white;
+  padding: 16px 24px;
+  border-radius: 30px;
+  font-size: 16px;
+  font-weight: 600;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+  z-index: 1000;
+  animation: bounce-pointer 2s ease-in-out infinite;
+}
+
+.first-visit-hint::before {
+  content: '👆';
+  margin-right: 8px;
+  font-size: 24px;
+}
+
+/* Ripple effect on click */
+.ripple {
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(255, 107, 53, 0.5);
+  transform: scale(0);
+  animation: ripple-animation 0.6s ease-out;
+  pointer-events: none;
+}
+
+@keyframes ripple-animation {
+  to {
+    transform: scale(4);
+    opacity: 0;
+  }
+}

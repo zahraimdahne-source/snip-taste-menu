@@ -3,6 +3,7 @@ import { CartItem } from '../types';
 import { DeliveryDistance, DELIVERY_FEES } from '../utils/whatsapp';
 import { analytics } from '../utils/analytics';
 import CIHPaymentModal from './CIHPaymentModal';
+import haptics from '../utils/haptics';
 
 interface CartSummaryProps {
   cart: CartItem[];
@@ -66,6 +67,7 @@ const CartSummary: React.FC<CartSummaryProps> = ({
     const whatsappURL = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
     window.open(whatsappURL, '_blank');
 
+    haptics.orderSuccess(); // Success vibration
     setIsProcessing(false);
     onClose();
   };
@@ -184,7 +186,10 @@ const CartSummary: React.FC<CartSummaryProps> = ({
                       </div>
                     </div>
                     <button
-                      onClick={() => onRemoveItem(index)}
+                      onClick={() => {
+                        haptics.removeFromCart(); // Vibrate on remove
+                        onRemoveItem(index);
+                      }}
                       className="text-gray-400 hover:text-red-500 p-1"
                     >
                       <svg
@@ -222,7 +227,10 @@ const CartSummary: React.FC<CartSummaryProps> = ({
                 <input
                   type="checkbox"
                   checked={isDelivery}
-                  onChange={(e) => setIsDelivery(e.target.checked)}
+                  onChange={(e) => {
+                    haptics.toggle(); // Vibrate on toggle
+                    setIsDelivery(e.target.checked);
+                  }}
                   className="sr-only peer"
                 />
                 <div className="w-11 h-6 bg-gray-200 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-snip-orange"></div>
@@ -240,7 +248,10 @@ const CartSummary: React.FC<CartSummaryProps> = ({
                 </p>
                 <div className="grid grid-cols-3 gap-2">
                   <button
-                    onClick={() => setDeliveryDistance('0-2km')}
+                    onClick={() => {
+                      haptics.buttonClick(); // Vibrate on distance selection
+                      setDeliveryDistance('0-2km');
+                    }}
                     className={`py-2 px-2 rounded border-2 font-body text-xs font-bold transition-all ${
                       deliveryDistance === '0-2km'
                         ? 'bg-snip-orange border-snip-orange text-white'
@@ -251,7 +262,10 @@ const CartSummary: React.FC<CartSummaryProps> = ({
                     <div className="text-[10px]">5 DH</div>
                   </button>
                   <button
-                    onClick={() => setDeliveryDistance('3-5km')}
+                    onClick={() => {
+                      haptics.buttonClick(); // Vibrate on distance selection
+                      setDeliveryDistance('3-5km');
+                    }}
                     className={`py-2 px-2 rounded border-2 font-body text-xs font-bold transition-all ${
                       deliveryDistance === '3-5km'
                         ? 'bg-snip-orange border-snip-orange text-white'
@@ -262,7 +276,10 @@ const CartSummary: React.FC<CartSummaryProps> = ({
                     <div className="text-[10px]">10 DH</div>
                   </button>
                   <button
-                    onClick={() => setDeliveryDistance('5-10km')}
+                    onClick={() => {
+                      haptics.buttonClick(); // Vibrate on distance selection
+                      setDeliveryDistance('5-10km');
+                    }}
                     className={`py-2 px-2 rounded border-2 font-body text-xs font-bold transition-all ${
                       deliveryDistance === '5-10km'
                         ? 'bg-snip-orange border-snip-orange text-white'

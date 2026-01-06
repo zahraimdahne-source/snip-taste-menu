@@ -23,8 +23,11 @@ const ItemModal: React.FC<ItemModalProps> = ({
   const [selectedSupplements, setSelectedSupplements] = useState<Supplement[]>([]);
   const [selectedSauce, setSelectedSauce] = useState<string>('');
 
-  const showSauces = ['tacos', 'kabab'].includes(sectionId);
-  const sauceOptions = ['Sauce Algérienne', 'Sauce Bigy', 'Sauce Barbecue', 'Sauce Mixte'];
+  const showSauces = ['tacos', 'kabab', 'plats'].includes(sectionId);
+  const sauceOptions =
+    sectionId === 'plats'
+      ? ['Sauce Blanche', 'Sauce Champignon']
+      : ['Sauce Algérienne', 'Sauce Bigy', 'Sauce Barbecue', 'Sauce Mixte'];
 
   if (!isOpen || !item) return null;
 

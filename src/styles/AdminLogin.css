@@ -1,0 +1,324 @@
+/* Premium Glassmorphism Design - Clean & Simple */
+.admin-login-wrapper {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #0f172a;
+  position: relative;
+  overflow: hidden;
+  font-family:
+    'Inter',
+    system-ui,
+    -apple-system,
+    sans-serif;
+}
+
+/* Back to Home Button */
+.back-home-btn {
+  position: absolute;
+  top: 24px;
+  left: 24px;
+  z-index: 50;
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  padding: 10px 20px;
+  border-radius: 100px;
+  color: white;
+  font-size: 0.95rem;
+  font-weight: 500;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.back-home-btn:hover {
+  background: rgba(255, 255, 255, 0.15);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+}
+
+.back-home-btn:active {
+  transform: translateY(0);
+}
+
+.back-home-btn .home-icon {
+  width: 16px;
+  height: 16px;
+}
+
+/* Cleaner, softer background shapes */
+.background-shapes {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  overflow: hidden;
+  background: radial-gradient(circle at 50% 50%, #1e293b 0%, #0f172a 100%);
+}
+
+.shape {
+  position: absolute;
+  filter: blur(100px);
+  opacity: 0.4;
+  animation: float 15s infinite ease-in-out alternate;
+}
+
+.shape-1 {
+  top: -10%;
+  left: 20%;
+  width: 40vw;
+  height: 40vw;
+  background: #6366f1; /* Indigo */
+  animation-duration: 20s;
+}
+
+.shape-2 {
+  bottom: -10%;
+  right: 10%;
+  width: 35vw;
+  height: 35vw;
+  background: #8b5cf6; /* Violet */
+  animation-duration: 25s;
+  animation-delay: -5s;
+}
+
+@keyframes float {
+  0% {
+    transform: translate(0, 0);
+  }
+  100% {
+    transform: translate(20px, 40px);
+  }
+}
+
+/* Glass Card - Simplified */
+.admin-login-glass-card {
+  position: relative;
+  z-index: 10;
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid rgba(255, 255, 255, 0.08); /* More subtle border */
+  border-radius: 24px;
+  padding: 32px 40px; /* Reduced from 48px */
+  width: 100%;
+  max-width: 400px; /* Slightly narrower for elegance */
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4);
+  animation: cardEntry 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes cardEntry {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Header */
+.login-header {
+  text-align: center;
+  margin-bottom: 24px; /* Reduced from 40px */
+}
+
+.login-icon-wrapper {
+  width: 64px; /* Reduced from 80px */
+  height: 64px; /* Reduced from 80px */
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 20px; /* Reduced from 24px */
+  box-shadow: 0 0 20px rgba(139, 92, 246, 0.2);
+  transition: transform 0.3s ease;
+  overflow: hidden;
+  padding: 10px;
+}
+
+.login-logo-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
+}
+
+.login-icon-wrapper:hover {
+  transform: scale(1.05) rotate(5deg);
+}
+
+.login-header h1 {
+  font-size: 24px;
+  font-weight: 600;
+  color: #fff;
+  margin: 0 0 8px;
+  letter-spacing: -0.02em;
+}
+
+.login-header p {
+  color: #94a3b8;
+  font-size: 14px;
+}
+
+/* Form Styles */
+.login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px; /* Reduced from 24px */
+}
+
+/* Input Group */
+.input-group {
+  position: relative;
+}
+
+.input-group input {
+  width: 100%;
+  padding: 14px 16px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  color: #fff;
+  font-size: 15px;
+  outline: none;
+  transition: all 0.2s ease;
+}
+
+.input-group input:focus {
+  border-color: #8b5cf6;
+  background: rgba(255, 255, 255, 0.05);
+  box-shadow: 0 0 0 4px rgba(139, 92, 246, 0.15);
+}
+
+.input-group label {
+  position: absolute;
+  left: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #64748b;
+  font-size: 15px;
+  pointer-events: none;
+  transition: all 0.2s ease;
+}
+
+/* Floating Label Animation */
+.input-group input:focus ~ label,
+.input-group input:not(:placeholder-shown) ~ label {
+  top: -10px;
+  left: 10px;
+  font-size: 12px;
+  color: #a78bfa;
+  background: #0f172a; /* Should match bg */
+  padding: 0 4px;
+}
+
+/* Submit Button */
+.login-btn-premium {
+  background: linear-gradient(90deg, #6366f1, #8b5cf6);
+  color: white;
+  border: none;
+  padding: 16px;
+  border-radius: 12px;
+  font-size: 15px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  margin-top: 8px;
+  letter-spacing: 0.01em;
+}
+
+.login-btn-premium:hover:not(:disabled) {
+  opacity: 0.95;
+  transform: translateY(-1px);
+  box-shadow: 0 10px 30px -10px rgba(139, 92, 246, 0.6);
+}
+
+.login-btn-premium:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+.login-btn-premium:disabled {
+  background: #334155;
+  color: #94a3b8;
+  cursor: not-allowed;
+}
+
+/* Error Message */
+.error-animated {
+  background: rgba(239, 68, 68, 0.15);
+  border: 1px solid rgba(239, 68, 68, 0.3);
+  color: #fca5a5;
+  padding: 12px;
+  border-radius: 10px;
+  font-size: 13px;
+  text-align: center;
+  animation: shake 0.4s ease-in-out;
+}
+
+/* Footer */
+.login-footer {
+  margin-top: 24px; /* Reduced from 40px */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  padding-top: 20px; /* Reduced from 24px */
+}
+
+.login-footer p {
+  color: #475569;
+  font-size: 13px;
+  margin: 0;
+}
+
+.secure-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(255, 255, 255, 0.03);
+  padding: 6px 12px;
+  border-radius: 100px;
+  color: #64748b;
+  font-size: 12px;
+  font-weight: 500;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.secure-dot {
+  width: 6px;
+  height: 6px;
+  background: #10b981;
+  border-radius: 50%;
+  box-shadow: 0 0 10px #10b981;
+}
+
+/* Loading Dots */
+.loading-dots span {
+  animation: blink 1.4s infinite both;
+}
+.loading-dots span:nth-child(2) {
+  animation-delay: 0.2s;
+}
+.loading-dots span:nth-child(3) {
+  animation-delay: 0.4s;
+}
+
+@media (max-width: 480px) {
+  .admin-login-glass-card {
+    padding: 32px 24px;
+    max-width: 92%;
+  }
+}

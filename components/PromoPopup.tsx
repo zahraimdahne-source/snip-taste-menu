@@ -165,8 +165,8 @@ const PromoPopup: React.FC<PromoPopupProps> = ({ imageSrc, onClose, onAddToCart 
 
   return (
     <div
-      className={`fixed top-4 left-4 z-[100] max-w-md transition-all duration-300 ${
-        isClosing ? 'opacity-0 -translate-x-8' : 'opacity-100 translate-x-0'
+      className={`fixed top-4 right-4 z-[100] max-w-md transition-all duration-300 ${
+        isClosing ? 'opacity-0 translate-x-8' : 'opacity-100 translate-x-0'
       }`}
     >
       {/* Simple Card */}
