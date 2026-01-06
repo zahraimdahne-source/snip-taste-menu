@@ -21,7 +21,7 @@ import { useGlobalHaptics } from '../hooks/useGlobalHaptics';
 import SnakeGame from '../components/SnakeGame';
 
 import BorderLighting from '../components/BorderLighting';
-import HangingLights from '../components/HangingLights';
+// import HangingLights from '../components/HangingLights';
 
 function CustomerApp() {
   const { cart, setCart, clearCart } = useCartPersistence();
@@ -128,7 +128,7 @@ function CustomerApp() {
           pointerEvents: 'none',
         }}
       >
-        <HangingLights />
+        {/* <HangingLights /> */}
       </div>
       <BorderLighting />
       {!isMenuVisible && <LoadingScreen onLogoClick={() => setIsMenuVisible(true)} />}
