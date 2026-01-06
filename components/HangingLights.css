@@ -2,7 +2,7 @@
   --wire-stroke: 10;
   --bulb-width: 40;
   width: 100%;
-  max-width: 1100px;
+  max-width: 1400px; /* Allowed larger width, container in App handles constraint */
   margin: 0 auto;
   pointer-events: none;
   position: absolute;
@@ -19,141 +19,87 @@
   overflow: visible;
 }
 
-/* Wire Styles */
+/* Wire Styles - Clean */
 .wire-base {
   fill: none;
-  stroke: #1a1a1a;
   stroke-linecap: round;
   stroke-linejoin: round;
 }
-.wire-shadow {
-  opacity: 0.35;
-  filter: blur(6px);
-}
+
+/* Base sway for the whole wire */
 .wire-wrap {
   transform-origin: 50% 0;
-  animation: sway 6.8s ease-in-out infinite;
+  animation: sway 7s ease-in-out infinite;
 }
 
-/* Socket & Hanger */
-.socket {
-  fill: #222;
-  stroke: #0d0d0d;
-  stroke-width: 1;
-}
-.hanger {
-  transform-box: fill-box;
-  transform-origin: 50% 0;
-  animation: hanger-sway 7.2s ease-in-out infinite;
+/* Lamp Group - Swinging */
+.lamp {
+  transform-origin: 0 0; /* Swing from the connection point on wire */
+  animation: lamp-swing 5s ease-in-out infinite alternate;
 }
 
-/* Bulb Base & Animation */
-.bulb {
-  transform-box: fill-box;
-  transform-origin: 50% 40%;
-  cursor: default;
+/* Filament Glow Animation */
+.filament {
+  stroke-dasharray: 20;
+  stroke-dashoffset: 0;
+  animation: filament-pulse var(--dur, 3s) var(--delay, 0s) infinite ease-in-out;
 }
 
-.bulb-base {
-  filter: drop-shadow(0 6px 12px rgba(0, 0, 0, 0.55));
+/* Glass Body tint change */
+.glass-body {
+  transition: fill 0.2s ease;
+  animation: glass-tint var(--dur, 3s) var(--delay, 0s) infinite ease-in-out;
 }
 
-/* The Glass Effect - Liquid Glace */
-.glass {
-  transition: fill 0.12s linear;
-  animation: bulb-blink var(--dur, 2.6s) var(--delay, 0s) infinite ease-in-out;
-  mix-blend-mode: normal;
-}
-
-/* Classic Blink Animation */
-@keyframes bulb-blink {
-  0% {
-    filter: none;
-    opacity: 1;
-    fill: var(--off);
-  }
-  6% {
-    fill: var(--on);
-    filter: drop-shadow(0 0 10px var(--on));
-  }
-  18% {
-    fill: var(--on);
-    filter: drop-shadow(0 0 18px var(--on));
-  }
-  35% {
-    fill: var(--off);
-    filter: none;
-    opacity: 0.92;
-  }
-  60% {
-    fill: var(--off);
-    opacity: 0.95;
-  }
-  80% {
-    fill: var(--on);
-    filter: drop-shadow(0 0 12px var(--on));
-    opacity: 1;
-  }
+@keyframes filament-pulse {
+  0%,
   100% {
-    fill: var(--off);
-    filter: none;
-    opacity: 0.96;
-  }
-}
-
-/* Hanger Sway Animation */
-@keyframes hanger-sway {
-  0% {
-    transform: rotate(0deg);
-  }
-  25% {
-    transform: rotate(-1deg);
+    stroke: #5d4037; /* Dark when off */
+    opacity: 0.3;
+    stroke-width: 1.5;
   }
   50% {
-    transform: rotate(0deg);
+    stroke: #ffeb3b; /* Bright gold when on */
+    opacity: 1;
+    stroke-width: 2.5;
+    filter: drop-shadow(0 0 2px #ffc107); /* Internal glow only */
   }
-  75% {
-    transform: rotate(0.9deg);
-  }
-  100% {
-    transform: rotate(0deg);
+  55% {
+    stroke: #fff; /* White hot peak */
   }
 }
 
-/* Main Wire Sway */
+@keyframes glass-tint {
+  0%,
+  100% {
+    fill: rgba(255, 255, 255, 0.1); /* Clear glass */
+  }
+  50% {
+    fill: rgba(255, 215, 0, 0.15); /* Slight warm tint when on */
+  }
+}
+
+/* Gentle swaying */
 @keyframes sway {
-  0% {
-    transform: rotate(0deg);
-  }
-  25% {
-    transform: rotate(0.5deg);
-  }
-  50% {
-    transform: rotate(0deg);
-  }
-  75% {
+  0%,
+  100% {
     transform: rotate(-0.5deg);
   }
-  100% {
-    transform: rotate(0deg);
+  50% {
+    transform: rotate(0.5deg);
   }
 }
 
-/* Inner Glow */
-.glow {
-  mix-blend-mode: screen;
-  opacity: 0.95;
-  transition: opacity 0.12s linear;
-  pointer-events: none;
+@keyframes lamp-swing {
+  from {
+    transform: rotate(-1deg);
+  }
+  to {
+    transform: rotate(1deg);
+  }
 }
 
-.back-spot {
-  opacity: 0.2;
-  mix-blend-mode: screen;
-  filter: blur(18px);
-}
-
-/* Responsive */
+/* Responsive adjustment */
 @media (max-width: 720px) {
   .hanging-lights-stage {
     top: -5px;
