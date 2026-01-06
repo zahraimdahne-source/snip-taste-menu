@@ -55,7 +55,7 @@ const HangingLights: React.FC = () => {
             d="M-50 80 C 160 20, 340 140, 480 80 S 740 30, 1250 85"
             className="wire-base"
             stroke="url(#wireGrad)"
-            strokeWidth="8" /* Thinner, cleaner wire */
+            strokeWidth="4" /* Thinner, cleaner wire */
             fill="none"
             strokeLinecap="round"
           ></path>
@@ -77,23 +77,26 @@ const HangingLights: React.FC = () => {
           <g key={i} className="lamp" transform={`translate(${lamp.x},${lamp.y})`}>
             {/* The Bulb Group */}
             <g className="bulb-group" transform="translate(0,34)">
-              {/* 1. The Filament (Inside) */}
+              {/* 1. The Filament (Inside) - Simple Curve */}
               <path
-                d="M-6 -10 Q 0 5 6 -10"
+                d="M-6 -6 Q 0 6 6 -6"
                 stroke="url(#filamentGrad)"
                 strokeWidth="2"
                 fill="none"
                 className="filament"
-                opacity="0.8"
+                opacity="1"
               />
 
-              {/* 2. The Main Liquid Bulb Body */}
-              <path
+              {/* 2. The Main Liquid Bulb Body - ROBUST ELLIPSE */}
+              <ellipse
                 className="glass-body"
-                d="M -24 -14 C -24 30, 24 30, 24 -14 L 14 -20 L -14 -20 Z"
+                cx="0"
+                cy="0"
+                rx="22"
+                ry="30"
                 fill="url(#glassSheen)"
-                stroke="rgba(255,215,0,0.3)" /* Subtle gold rim */
-                strokeWidth="1"
+                stroke="rgba(255,215,0,0.4)"
+                strokeWidth="1.5"
                 style={
                   {
                     '--on': GOLD_PALETTE.on,
@@ -102,35 +105,35 @@ const HangingLights: React.FC = () => {
                     '--delay': lamp.delay,
                   } as React.CSSProperties
                 }
-              ></path>
+              />
 
               {/* 3. Specular Highlight (The "Wet" Look) */}
               <ellipse
-                cx="10"
-                cy="-4"
-                rx="6"
-                ry="12"
+                cx="8"
+                cy="-8"
+                rx="5"
+                ry="10"
                 transform="rotate(-20)"
-                fill="rgba(255,255,255,0.7)"
-                filter="blur(1px)"
+                fill="rgba(255,255,255,0.8)"
+                filter="blur(0.5px)"
               />
 
-              <circle cx="-8" cy="8" r="3" fill="rgba(255,255,255,0.5)" filter="blur(2px)" />
+              <circle cx="-6" cy="12" r="2.5" fill="rgba(255,255,255,0.6)" filter="blur(1px)" />
             </g>
 
-            {/* Hanger and Socket - Cleaner */}
+            {/* Hanger and Socket - Simple Line and Rect */}
             <line
               className="hanger"
               x1="0"
               y1={-lamp.h}
               x2="0"
-              y2="-6"
+              y2="-24" /* Connects to top of socket */
               stroke="#1a1a1a"
-              strokeWidth="3"
+              strokeWidth="2"
             ></line>
 
-            {/* Socket Cap */}
-            <path d="M-16 -20 L 16 -20 L 14 -6 L -14 -6 Z" fill="#222" />
+            {/* Socket Cap - Simple Rect */}
+            <rect x="-12" y="-28" width="24" height="12" rx="2" fill="#222" />
           </g>
         ))}
       </svg>
